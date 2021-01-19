@@ -1,0 +1,8 @@
+{
+  "item.rsio.chip": "Chip",
+  "item.rsio.executor": "Redstone executor",
+  "item.rsio.compiler": "Compiler",
+
+  "block.rsio.executor": "Redstone executor",
+  "block.rsio.compiler": "Compiler"
+}

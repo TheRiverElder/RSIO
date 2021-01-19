@@ -1,0 +1,8 @@
+{
+  "item.rsio.chip": "芯片",
+  "item.rsio.executor": "红石执行器",
+  "item.rsio.compiler": "编译器",
+
+  "block.rsio.executor": "红石执行器",
+  "block.rsio.compiler": "编译器"
+}
