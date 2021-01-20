@@ -15,11 +15,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.DistExecutor;
+import top.riverelder.rsio.tileentity.CompilerTileEntity;
 import top.riverelder.rsio.util.OpenGui;
 
 import javax.annotation.Nullable;
 
 public class CompilerBlock extends Block {
+
     public CompilerBlock() {
         super(Properties.create(Material.IRON)
                 .harvestTool(ToolType.PICKAXE)
@@ -38,20 +40,24 @@ public class CompilerBlock extends Block {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return null;
-    }
-
-    @Override
-    public void onBlockClicked(BlockState blockState, World worldIn, BlockPos blockPos, PlayerEntity player) {
-        player.playSound(SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, 1, 1);
+        return new CompilerTileEntity();
     }
 
     @Override
     public ActionResultType onBlockActivated(BlockState blockState, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
-        player.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1, 1);
-        if (world.isRemote) {
-            DistExecutor.runWhenOn(Dist.CLIENT, () -> (() -> OpenGui.openGui()));
+        player.playSound(SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, 1, 1);
+        if (world.isRemote && hand == Hand.MAIN_HAND) {
+            DistExecutor.runWhenOn(Dist.CLIENT, () -> (() -> OpenGui.openGui(this, world, pos)));
         }
         return ActionResultType.SUCCESS;
+    }
+
+    public CompilerTileEntity getCompilerTileEntity(World world, BlockPos pos) {
+        TileEntity tileEntity = world.getTileEntity(pos);
+        if (tileEntity instanceof CompilerTileEntity) {
+            CompilerTileEntity compilerTileEntity = (CompilerTileEntity) tileEntity;
+            return compilerTileEntity;
+        }
+        return null;
     }
 }

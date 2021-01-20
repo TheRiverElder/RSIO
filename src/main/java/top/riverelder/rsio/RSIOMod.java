@@ -2,6 +2,12 @@ package top.riverelder.rsio;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.world.Dimension;
+import net.minecraft.world.DimensionType;
+import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -15,8 +21,10 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import top.riverelder.rsio.block.Blocks;
-import top.riverelder.rsio.item.Items;
+import top.riverelder.rsio.block.AllBlocks;
+import top.riverelder.rsio.item.AllItems;
+import top.riverelder.rsio.network.Networking;
+import top.riverelder.rsio.tileentity.AllTileEntityTypes;
 
 import java.util.stream.Collectors;
 
@@ -25,6 +33,8 @@ import java.util.stream.Collectors;
 public class RSIOMod {
 
     public static final String NAME = "rsio";
+
+    public static MinecraftServer MINECRAFT_SERVER;
 
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
@@ -47,6 +57,7 @@ public class RSIOMod {
     {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
+        Networking.registerMessage();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
@@ -72,6 +83,7 @@ public class RSIOMod {
     public void onServerStarting(FMLServerStartingEvent event) {
         // do something when the server starts
         LOGGER.info("HELLO from server starting");
+        MINECRAFT_SERVER = event.getServer();
     }
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
@@ -81,15 +93,20 @@ public class RSIOMod {
 
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-            blockRegistryEvent.getRegistry().register(Blocks.COMPILER);
-            blockRegistryEvent.getRegistry().register(Blocks.EXECUTOR);
+            blockRegistryEvent.getRegistry().register(AllBlocks.COMPILER);
+            blockRegistryEvent.getRegistry().register(AllBlocks.EXECUTOR);
         }
 
         @SubscribeEvent
         public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
-            event.getRegistry().register(Items.COMPILER);
-            event.getRegistry().register(Items.EXECUTOR);
-            event.getRegistry().register(Items.CHIP);
+            event.getRegistry().register(AllItems.COMPILER);
+            event.getRegistry().register(AllItems.EXECUTOR);
+            event.getRegistry().register(AllItems.CHIP);
+        }
+
+        @SubscribeEvent
+        public static void onTileEntityTypeRegistry(final RegistryEvent.Register<TileEntityType<?>> event) {
+            event.getRegistry().register(AllTileEntityTypes.COMPILER);
         }
     }
 }

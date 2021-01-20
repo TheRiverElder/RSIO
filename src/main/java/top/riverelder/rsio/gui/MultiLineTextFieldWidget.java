@@ -26,7 +26,7 @@ public class MultiLineTextFieldWidget extends Widget {
     }
 
     public String getText() {
-        return lineWidgets.stream().map(lw -> lw.getText()).collect(Collectors.joining("\n"));
+        return lineWidgets.stream().map(TextFieldWidget::getText).collect(Collectors.joining("\n"));
     }
 
     public void setText(@Nonnull String text) {
@@ -178,7 +178,7 @@ public class MultiLineTextFieldWidget extends Widget {
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
         boolean result = false;
-        System.out.println("keyCode = " + keyCode);
+//        System.out.println("keyCode = " + keyCode);
 
         int i = 0;
         for (TextFieldWidget lw : lineWidgets) {
