@@ -4,5 +4,14 @@
   "item.rsio.compiler": "编译器",
 
   "block.rsio.executor": "红石执行器",
-  "block.rsio.compiler": "编译器"
+  "block.rsio.compiler": "编译器",
+
+  "text.rsio.program_save_succeeded": "§a§l程序保存成功 ： §9%s (§7%s 著)",
+  "text.rsio.program_save_failed": "§4§l程序报讯失败 ： §9%s (§7%s 著)",
+
+  "gui.rsio.btn_save": "保存",
+  "gui.rsio.btn_compile": "编译",
+  "gui.rsio.btn_clear": "§c清空",
+  "gui.rsio.lbl_title": "标题",
+  "gui.rsio.lbl_code": "代码"
 }

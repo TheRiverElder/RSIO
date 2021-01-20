@@ -2,14 +2,19 @@ package top.riverelder.rsio.gui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextComponentUtils;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.server.command.TextComponentHelper;
+import top.riverelder.rsio.RSIOMod;
 import top.riverelder.rsio.tileentity.CompilerTileEntity;
 
 import javax.annotation.Nonnull;
@@ -25,14 +30,13 @@ public class CompilerScreen extends Screen {
     private Button btnCompile;
     private Button btnClear;
     private Button btnSave;
-//    private Slot sltChipIn;
-//    private Slot sltChipOut;
 
     private Supplier<CompilerTileEntity> compilerGetter;
 
     public CompilerScreen(ITextComponent titleIn, @Nonnull Supplier<CompilerTileEntity> compilerGetter) {
         super(titleIn);
         this.compilerGetter = compilerGetter;
+//        this.font = new FontRenderer();
     }
 
     @Override
@@ -47,9 +51,18 @@ public class CompilerScreen extends Screen {
 
         this.minecraft.keyboardListener.enableRepeatEvents(true);
 
-        this.btnSave = new Button(innerLeft, 20, buttonWidth, lineHeight, new StringTextComponent("Save"), this::onBtnSaveClick);
-        this.btnCompile = new Button(innerLeft + buttonWidth + gap, 20, buttonWidth, lineHeight, new StringTextComponent("Compile"), this::onBtnCompileClick);
-        this.btnClear = new Button(innerLeft + 2 * (buttonWidth + gap), 20, buttonWidth, lineHeight, new StringTextComponent("Clear"), this::onBtnClearClick);
+        this.btnSave = new Button(
+                innerLeft, 20, buttonWidth, lineHeight,
+                new TranslationTextComponent("gui." + RSIOMod.NAME + ".btn_save"),
+                this::onBtnSaveClick);
+        this.btnCompile = new Button(
+                innerLeft + buttonWidth + gap, 20, buttonWidth, lineHeight,
+                new TranslationTextComponent("gui." + RSIOMod.NAME + ".btn_compile"),
+                this::onBtnCompileClick);
+        this.btnClear = new Button(
+                innerLeft + 2 * (buttonWidth + gap), 20, buttonWidth, lineHeight,
+                new TranslationTextComponent("gui." + RSIOMod.NAME + ".btn_clear"),
+                this::onBtnClearClick);
         this.addButton(btnSave);
         this.addButton(btnCompile);
         this.addButton(btnClear);
@@ -127,9 +140,6 @@ public class CompilerScreen extends Screen {
 //        System.out.println(compilerTileEntity);
         if (compilerTileEntity != null) {
             compilerTileEntity.save(title, this.minecraft.player.getDisplayName().getString(), code, new byte[0], true);
-            this.minecraft.player.sendChatMessage("Program saved: " + title + ".");
-        } else {
-            this.minecraft.player.sendChatMessage("Saving failed: " + title + ".");
         }
         this.closeScreen();
     }

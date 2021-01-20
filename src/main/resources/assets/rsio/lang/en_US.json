@@ -4,5 +4,15 @@
   "item.rsio.compiler": "Compiler",
 
   "block.rsio.executor": "Redstone executor",
-  "block.rsio.compiler": "Compiler"
+  "block.rsio.compiler": "Compiler",
+
+  "text.rsio.program_save_succeeded": "§a§lProgram §a§lsaved : §9%s (Author: §7%s )",
+  "text.rsio.program_save_failed": "§4§lProgram §a§lsaving §a§lfailed : §9%s (Author: §7%s )",
+
+  "gui.rsio.btn_save": "Save",
+  "gui.rsio.btn_compile": "Compile",
+  "gui.rsio.btn_clear": "§cClear",
+  "gui.rsio.lbl_title": "Title",
+  "gui.rsio.lbl_code": "Code"
+
 }

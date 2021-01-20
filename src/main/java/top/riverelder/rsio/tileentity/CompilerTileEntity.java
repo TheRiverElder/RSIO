@@ -1,10 +1,12 @@
 package top.riverelder.rsio.tileentity;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.util.Constants;
 import top.riverelder.rsio.RSIOMod;
 import top.riverelder.rsio.network.CEditCodePacket;
@@ -35,8 +37,11 @@ public class CompilerTileEntity extends TileEntity {
         markDirty();
         if (!world.isRemote) {
             world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), Constants.BlockFlags.BLOCK_UPDATE);
-        } else if (doSendToServer) {
-            Networking.CHANNEL.sendToServer(new CEditCodePacket(this.pos, this.title, this.author, this.code, this.bytes));
+        } else {
+            if (doSendToServer) {
+                Networking.CHANNEL.sendToServer(new CEditCodePacket(this.pos, this.title, this.author, this.code, this.bytes));
+            }
+            Minecraft.getInstance().player.sendMessage(new TranslationTextComponent("text." + RSIOMod.NAME + ".program_save_succeeded", title, author), null);
         }
     }
 
