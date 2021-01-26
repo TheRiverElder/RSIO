@@ -11,6 +11,12 @@ public class AllTileEntityTypes {
             TileEntityType.Builder
                     .create(CompilerTileEntity::new, AllBlocks.COMPILER)
                     .build(null)
-            .setRegistryName(new ResourceLocation(RSIOMod.NAME, "compiler"));
+                    .setRegistryName(new ResourceLocation(RSIOMod.NAME, "compiler"));
+
+    public static final TileEntityType<?> EXECUTOR =
+            TileEntityType.Builder
+                    .create(CompilerTileEntity::new, AllBlocks.EXECUTOR)
+                    .build(null)
+                    .setRegistryName(new ResourceLocation(RSIOMod.NAME, "executor"));
 
 }

@@ -6,8 +6,13 @@
   "block.rsio.executor": "Redstone executor",
   "block.rsio.compiler": "Compiler",
 
-  "text.rsio.program_save_succeeded": "§a§lProgram §a§lsaved : §9%s (Author: §7%s )",
-  "text.rsio.program_save_failed": "§4§lProgram §a§lsaving §a§lfailed : §9%s (Author: §7%s )",
+  "text.rsio.program_snapshot": "%s (Author: %s ) %dB",
+  "text.rsio.program_save_succeeded": "§a§lProgram §a§lsaved : ",
+  "text.rsio.program_save_failed": "§4§lProgram §a§lsaving §a§lfailed : ",
+
+  "text.rsio.program_title": "Title: %s",
+  "text.rsio.program_author": "Author: %s",
+  "text.rsio.program_size": "Size: %d B",
 
   "gui.rsio.btn_save": "Save",
   "gui.rsio.btn_compile": "Compile",

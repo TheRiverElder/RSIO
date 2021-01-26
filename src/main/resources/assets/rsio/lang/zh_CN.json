@@ -6,8 +6,13 @@
   "block.rsio.executor": "红石执行器",
   "block.rsio.compiler": "编译器",
 
-  "text.rsio.program_save_succeeded": "§a§l程序保存成功 ： §9%s (§7%s 著)",
-  "text.rsio.program_save_failed": "§4§l程序报讯失败 ： §9%s (§7%s 著)",
+  "text.rsio.program_snapshot": "%s (%s 著) %dB",
+  "text.rsio.program_save_succeeded": "§a§l程序保存成功 ：",
+  "text.rsio.program_save_failed": "§4§l程序保存失败 ：",
+
+  "text.rsio.program_title": "标题：%s",
+  "text.rsio.program_author": "作者：%s",
+  "text.rsio.program_size": "大小：%d B",
 
   "gui.rsio.btn_save": "保存",
   "gui.rsio.btn_compile": "编译",

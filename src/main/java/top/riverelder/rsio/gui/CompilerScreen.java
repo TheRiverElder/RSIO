@@ -3,17 +3,18 @@ package top.riverelder.rsio.gui;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.fonts.Font;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.button.Button;
+import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.resources.IFutureReloadListener;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextComponentUtils;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.server.command.TextComponentHelper;
 import top.riverelder.rsio.RSIOMod;
 import top.riverelder.rsio.tileentity.CompilerTileEntity;
 
@@ -24,7 +25,6 @@ import java.util.function.Supplier;
 public class CompilerScreen extends Screen {
 
     private ResourceLocation background = new ResourceLocation("rsio", "textures/gui/compiler_bg.png");
-
     private TextFieldWidget txtTitleInput;
     private MultiLineTextFieldWidget txtMultiLineCodeInput;
     private Button btnCompile;
@@ -36,7 +36,6 @@ public class CompilerScreen extends Screen {
     public CompilerScreen(ITextComponent titleIn, @Nonnull Supplier<CompilerTileEntity> compilerGetter) {
         super(titleIn);
         this.compilerGetter = compilerGetter;
-//        this.font = new FontRenderer();
     }
 
     @Override

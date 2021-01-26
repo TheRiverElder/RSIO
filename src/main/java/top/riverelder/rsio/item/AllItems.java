@@ -15,5 +15,5 @@ public class AllItems {
             new Item.Properties().group(ItemGroup.DECORATIONS)
             ).setRegistryName(AllBlocks.EXECUTOR.getRegistryName());
 
-    public static Item CHIP = new ChipItem();
+    public static ChipItem CHIP = new ChipItem();
 }

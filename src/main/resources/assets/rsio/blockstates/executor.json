@@ -1,7 +1,16 @@
 {
   "variants": {
-    "": {
+    "has_content=false,running=false": {
       "model": "minecraft:block/redstone_block"
+    },
+    "has_content=false,running=true": {
+      "model": "minecraft:block/redstone_block"
+    },
+    "has_content=true,running=false": {
+      "model": "minecraft:block/redstone_lamp"
+    },
+    "has_content=true,running=true": {
+      "model": "minecraft:block/redstone_lamp_on"
     }
   }
 }

@@ -107,6 +107,7 @@ public class RSIOMod {
         @SubscribeEvent
         public static void onTileEntityTypeRegistry(final RegistryEvent.Register<TileEntityType<?>> event) {
             event.getRegistry().register(AllTileEntityTypes.COMPILER);
+            event.getRegistry().register(AllTileEntityTypes.EXECUTOR);
         }
     }
 }

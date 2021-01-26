@@ -41,7 +41,11 @@ public class CompilerTileEntity extends TileEntity {
             if (doSendToServer) {
                 Networking.CHANNEL.sendToServer(new CEditCodePacket(this.pos, this.title, this.author, this.code, this.bytes));
             }
-            Minecraft.getInstance().player.sendMessage(new TranslationTextComponent("text." + RSIOMod.NAME + ".program_save_succeeded", title, author), null);
+            Minecraft.getInstance().player.sendMessage(
+                    new TranslationTextComponent("text." + RSIOMod.NAME + ".program_save_succeeded").append(new TranslationTextComponent(
+                            "text." + RSIOMod.NAME + ".program_snapshot",
+                            title, author, bytes.length
+                    )), null);
         }
     }
 
@@ -128,7 +132,6 @@ public class CompilerTileEntity extends TileEntity {
                 nbt.getString(KEY_CODE),
                 nbt.getByteArray(KEY_BYTES)
         );
-        System.out.println("read " + this);
         super.read(state, nbt);
     }
 
@@ -138,7 +141,6 @@ public class CompilerTileEntity extends TileEntity {
         compound.putString(KEY_AUTHOR, author);
         compound.putString(KEY_CODE, code);
         compound.putByteArray(KEY_BYTES, bytes);
-        System.out.println("write " + this);
         return super.write(compound);
     }
 
